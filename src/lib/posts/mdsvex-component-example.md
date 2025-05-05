@@ -1,7 +1,7 @@
 ---
 title: "Ứng dụng phân tán"
-date: "2023-04-28"
-updated: "2023-04-28"
+date: "2025-05-04"
+updated: "2025-05-04"
 categories:
   - "sveltekit"
   - "markdown"
@@ -9,7 +9,7 @@ categories:
 coverImage: "/images/jerry-zhang-ePpaQC2c1xA-unsplash.jpg"
 coverWidth: 16
 coverHeight: 9
-excerpt: This post demonstrates how to include a Svelte component in a Markdown post.
+excerpt: Bài viết này sẽ khám phá những khái niệm cốt lõi, kiến trúc phổ biến và thách thức trong việc phát triển ứng dụng phân tán.
 ---
 
 # Ứng Dụng Phân Tán: Chìa Khóa Cho Kỷ Nguyên Số

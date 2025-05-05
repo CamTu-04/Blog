@@ -1,14 +1,14 @@
 ---
 title: "Hoàng Cẩm Tú"
-date: "2023-10-29"
-updated: "2023-10-29"
+date: "2025-05-05"
+updated: "2025-05-05"
 categories:
   - "sveltekit"
   - "markdown"
 coverImage: "/images/jefferson-santos-fCEJGBzAkrU-unsplash.jpg"
 coverWidth: 16
 coverHeight: 9
-excerpt: Check out how heading links work with this starter in this post.
+excerpt: Tôi là Hoàng Cẩm Tú, và tôi rất vui được chia sẻ với các bạn về những điều tôi yêu thích và những dự án tôi đang theo đuổi.
 ---
 
 # 👋 Xin chào! Tôi là Hoàng Cẩm Tú

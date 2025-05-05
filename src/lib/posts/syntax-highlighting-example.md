@@ -1,7 +1,7 @@
 ---
-title: "Syntax highlighting with mdsvex"
-date: "2023-01-05"
-updated: "2023-01-05"
+title: "Bài tập"
+date: "2025-05-03"
+updated: "2025-05-05"
 categories:
   - "sveltekit"
   - "web"
@@ -10,7 +10,7 @@ categories:
 coverImage: "/images/linus-nylund-Q5QspluNZmM-unsplash.jpg"
 coverWidth: 16
 coverHeight: 9
-excerpt: This post shows you how syntax highlighting works here.
+excerpt: Các bài tập được giao trên canvas.
 ---
 
 mdsvex has automatic, built-in syntax highlighting with [Prism.js](https://prismjs.com/); just include the language name after the triple backticks, like so:
