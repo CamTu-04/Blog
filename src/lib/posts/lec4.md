@@ -1,7 +1,7 @@
 ---
 title: "Định danh"
 date: "2025-05-02"
-updated: "2025-05-16"
+updated: "2025-05-12"
 author: "Hoàng Cẩm Tú"
 categories:
   - "Distributed Systems"
