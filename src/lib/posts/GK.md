@@ -12,11 +12,29 @@ coverWidth: 16
 coverHeight: 9
 excerpt: Xây dựng hệ thống tìm kiếm sản phẩm tương tự phân tán với Milvus, Flask và Deep Learning.
 ---
+# Báo cáo Bài tập lớn
+
+| Thông tin                | Chi tiết |
+|--------------------------|----------|
+| **Họ tên sinh viên**  | Vương Quang Quý-23010039, Hoàng Cẩm Tú-22010116|
+| **Giảng viên hướng dẫn** | Phạm Kim Thành |
+| **Lớp**                  | Ứng dụng phân tán(N05)-CSE702063 |
+| **Link GitHub dự án**    | [Milvus Image Search Project](https://github.com/akitosuref/imagesearch.git) |
+
+## LỜI MỞ ĐẦU
+Trong thời đại bùng nổ của thương mại điện tử, khả năng tìm kiếm và gợi ý sản phẩm một cách chính xác và hiệu quả đóng vai trò then chốt trong việc nâng cao trải nghiệm người dùng và gia tăng doanh số bán hàng. Với sự phát triển mạnh mẽ của các công nghệ trí tuệ nhân tạo và học sâu, các phương pháp tìm kiếm truyền thống dần được thay thế bởi các hệ thống tìm kiếm ngữ nghĩa và tìm kiếm tương tự dựa trên vector.
+
+Dự án “Hệ thống tìm kiếm sản phẩm tương tự trong e-commerce” được thực hiện nhằm mục tiêu xây dựng một hệ thống có khả năng tìm kiếm và gợi ý các sản phẩm tương tự dựa trên nội dung mô tả, hình ảnh và thuộc tính kỹ thuật. Dự án ứng dụng các công nghệ hiện đại như Milvus – một cơ sở dữ liệu vector hiệu suất cao, FastAPI – framework Python nhẹ và nhanh, kết hợp với Docker và Nginx để triển khai hệ thống theo mô hình phân tán, đảm bảo khả năng mở rộng, chịu lỗi và dễ dàng giám sát.
+
+Thông qua dự án này, nhóm mong muốn không chỉ áp dụng các kiến thức đã học trong môn Ứng dụng phân tán, mà còn khám phá thực tế cách các hệ thống tìm kiếm hiện đại hoạt động và được triển khai trong môi trường sản xuất.
+
+---
+
 # I. Giới thiệu dự án
 
 ## 🏷️ Tên dự án: **Tìm kiếm sản phẩm tương tự trong hệ thống E-Commerce sử dụng Milvus**
 
-## ❓ Vấn đề
+## 1. Vấn đề
 
 Người dùng thường muốn **tìm sản phẩm tương tự** với một món hàng họ yêu thích – có thể là một chiếc áo, đôi giày, hay vật dụng gia đình nào đó.
 
@@ -26,7 +44,7 @@ Làm sao để họ có thể:
 - Gõ một đoạn mô tả sản phẩm để tìm sản phẩm tương tự trên hệ thống?
 - Tìm các sản phẩm có cùng loại, màu sắc, kích thước?
 
-## 🎯 Mục tiêu
+## 2. Mục tiêu
 
 Dự án nhằm xây dựng một hệ thống có khả năng **gợi ý các sản phẩm tương tự** dựa trên:
 
@@ -41,7 +59,7 @@ Bằng cách kết hợp **AI embedding models** (ResNet, BERT) với **hệ th�
 - Trải nghiệm phản hồi gần như thời gian thực
 
 
-## 🔧 Tính năng chính
+## 3. Tính năng chính
 
 - **Tìm kiếm tương tự bằng ảnh:** sử dụng mô hình ResNet để trích xuất đặc trưng hình ảnh.
 - **Tìm kiếm tương tự bằng mô tả văn bản:** sử dụng mô hình BERT hoặc TF-IDF/Word2Vec.
@@ -51,7 +69,7 @@ Bằng cách kết hợp **AI embedding models** (ResNet, BERT) với **hệ th�
 
 
 
-## 🧪 Công nghệ sử dụng
+## 4. Công nghệ sử dụng
 
 | Thành phần               | Công nghệ                                     |
 |--------------------------|-----------------------------------------------|
@@ -65,18 +83,14 @@ Bằng cách kết hợp **AI embedding models** (ResNet, BERT) với **hệ th�
 ---
 ## II. 📁 Tổng quan kiến trúc và cấu trúc thư mục dự án
 
-### ✅ Kiến trúc hệ thống
+### 1. Kiến trúc hệ thống
 
 **Sơ đồ các thành phần:**
 
-- Giao tiếp giữa người dùng và hệ thống thông qua REST API được xây dựng bằng **Flask** (`app.py`).
-- Dữ liệu được vector hóa thông qua các mô hình **ResNet50** (ảnh) và **Word2Vec/BERT** (văn bản).
-- Các vector được gửi đến **Milvus** để tìm kiếm vector tương tự.
-- Kết quả được trả về từ Milvus và phản hồi lại người dùng.
-- Toàn bộ các thành phần được container hóa bằng **Docker Compose** để dễ triển khai và mở rộng.
+![Sơ đồ kiến trúc hệ thống](/images/KTHT.jpg)
 
 
-### ✅ Cấu trúc thư mục
+### 2. Cấu trúc thư mục
 
 ```bash
 milvus/
@@ -94,7 +108,7 @@ milvus/
               
 ```
 
-### ✅ Tiến trình hoạt động hệ thống tìm kiếm sản phẩm tương tự
+### 3. Tiến trình hoạt động hệ thống tìm kiếm sản phẩm tương tự
 
 **Bước 1: Người dùng gửi yêu cầu tìm kiếm ảnh**
 - Người dùng gửi một ảnh lên từ giao diện web hoặc qua API POST request.
@@ -125,7 +139,7 @@ milvus/
 ---
 ## III. 🧠 Vector hóa dữ liệu & tích hợp Milvus
 
-### ✅ Mục tiêu
+### 1. Mục tiêu
 
 Để tìm được sản phẩm tương tự với sản phẩm mà người dùng cung cấp (thông qua **ảnh**), hệ thống phải **chuyển đổi ảnh thành vector đặc trưng (embedding)** rồi **tìm kiếm các vector gần nhất** trong một cơ sở dữ liệu vector.
 
@@ -135,7 +149,7 @@ milvus/
 - **Milvus** – hệ quản trị cơ sở dữ liệu chuyên cho dữ liệu vector – để lưu trữ và truy vấn nhanh chóng các vector ảnh.
 
 
-### 🧠 Lợi ích & vai trò của Milvus trong hệ thống
+### 2. Lợi ích & vai trò của Milvus trong hệ thống
 
 | Mục đích | Milvus hỗ trợ |
 |---------|----------------|
@@ -145,11 +159,11 @@ milvus/
 | Hỗ trợ nhiều loại khoảng cách | Trong dự án này dùng **Cosine Similarity** |
 
 
-### 🧩 Các bước xử lý & vai trò từng tệp trong thư mục `milvus/`
+### 3. Các bước xử lý & vai trò từng tệp trong thư mục `milvus/`
 
 > Các tệp mã nguồn dưới đây thực hiện toàn bộ quy trình: **vector hóa dữ liệu → lưu vào Milvus → truy vấn ảnh tương tự**.
 
-#### 📄 `FeatureExtractor.py` – *Trích xuất vector ảnh*
+#### 3.1.  `FeatureExtractor.py` – *Trích xuất vector ảnh*
 
 - Định nghĩa class `FeatureExtractor` dùng mô hình ResNet34 (từ `timm`) để biến ảnh thành vector 512 chiều.
 - Vector được **chuẩn hóa (normalize)** để phù hợp với việc so sánh bằng cosine.
@@ -160,14 +174,14 @@ python
 output = self.model(input_tensor)
 feature_vector = normalize(output.squeeze().numpy().reshape(1, -1), norm="l2")
 ```
-✅ Tệp này được sử dụng bởi cả app.py và embeddings_to_milvus.py.
-#### 📄 `enginx.conf` - *Load Balancing và Reverse Proxy*
+- Tệp này được sử dụng bởi cả app.py và embeddings_to_milvus.py.
+#### 3.2.  `enginx.conf` - *Load Balancing và Reverse Proxy*
 File nginx.conf dùng để cấu hình Nginx như một load balancer (bộ cân bằng tải) trong hệ thống phân tán.
 Nó đảm bảo:
 - Phân phối yêu cầu từ người dùng đến nhiều node FastAPI (fastapi1, fastapi2, fastapi3)
 - Giúp hệ thống chịu tải tốt hơn, tăng tính sẵn sàng, và tăng khả năng chịu lỗi (Fault Tolerance)
 
-#### 📄 `embeddings_to_milvus.py` – *Nhúng Dữ Liệu Ảnh vào Milvus*
+#### 3.3.  `embeddings_to_milvus.py` – *Nhúng Dữ Liệu Ảnh vào Milvus*
 - Duyệt toàn bộ ảnh trong thư mục images/, images/train/, v.v.
 - Gọi FeatureExtractor để trích xuất vector từ mỗi ảnh.
 - Tạo collection trong Milvus nếu chưa tồn tại.
@@ -177,8 +191,8 @@ python
 
 client.insert("image_embeddings", [{"vector": embedding, "filename": file_path}])
 ```
-✅ Dùng khi cần đẩy toàn bộ ảnh vào Milvus trước khi chạy hệ thống.
-#### 📄 `MilvusCollection.py` – *Tạo Nhanh Collection Milvus*
+- Dùng khi cần đẩy toàn bộ ảnh vào Milvus trước khi chạy hệ thống.
+#### 3.4.  `MilvusCollection.py` – *Tạo Nhanh Collection Milvus*
 **Tệp giúp khởi tạo collection mới trong Milvus với:**
 - Vector field tên vector
 - Dimension = 512
@@ -192,8 +206,8 @@ client.create_collection(
     metric_type="COSINE",
 )
 ```
-✅ Có thể chạy riêng để chuẩn bị Milvus trước khi insert dữ liệu.
-#### 📄 `app.py` – *Xử Lý Truy Vấn Tìm Kiếm & Giao Diện Web*
+- Có thể chạy riêng để chuẩn bị Milvus trước khi insert dữ liệu.
+#### 3.5.  `app.py` – *Xử Lý Truy Vấn Tìm Kiếm & Giao Diện Web*
 **Tệp chính của ứng dụng Flask, thực hiện các chức năng:**
 - Hiển thị giao diện web tải ảnh.
 - Nhận ảnh từ người dùng.
@@ -204,21 +218,21 @@ python
 
 results = client.search(..., data=[embedding], limit=10)
 ```
-✅ Là trung tâm giao tiếp giữa người dùng và Milvus.
-#### 📄 `templates/index.html` 
+- Là trung tâm giao tiếp giữa người dùng và Milvus.
+#### 3.6.  `templates/index.html` 
 - Giao diện web đơn giản cho phép người dùng tải ảnh và xem ảnh gợi ý tương tự nhất đã lưu trong Milvus.
 
-✅ Phần front-end của hệ thống.
-#### 📄 `images/` 
+- Phần front-end của hệ thống.
+#### 3.7.  `images/` 
 - Chứa dữ liệu ảnh gốc của hệ thống, có thể chia thành các thư mục con như train/, test/, exception/, object/.
 
-✅ Nguồn dữ liệu cho quá trình index và truy vấn.
-#### 📄 `stress_test.sh` 
+- Nguồn dữ liệu cho quá trình index và truy vấn.
+#### 3.8.  `stress_test.sh` 
 **Script để kiểm tra hiệu năng hệ thống khi xử lý:**
 - Truy vấn ảnh liên tục.
 - Xử lý hàng loạt ảnh trong thời gian ngắn.
 
-✅ Giúp phát hiện và kiểm tra khả năng chịu lỗi.
+- Giúp phát hiện và kiểm tra khả năng chịu lỗi.
 
 *Thông qua việc tích hợp Milvus và sử dụng các mô hình học sâu, hệ thống này không chỉ cung cấp khả năng tìm kiếm ảnh tương tự một cách hiệu quả mà còn cho phép mở rộng và tối ưu hóa quy trình xử lý dữ liệu ảnh.*
 
@@ -226,12 +240,12 @@ results = client.search(..., data=[embedding], limit=10)
 ## IV. ⚙️ Triển khai hệ thống phân tán: Kiến trúc & Các tiêu chí kỹ thuật
 
 Triển khai hệ thống gợi ý sản phẩm tương tự trên môi trường phân tán sử dụng **Docker Compose**, đảm bảo các tiêu chí kỹ thuật như giao tiếp phân tán, fault tolerance, phân mảnh dữ liệu, logging và stress test.s
-### 1. 🔗 Giao tiếp phân tán (Distributed Communication)
+### 1. Giao tiếp phân tán (Distributed Communication)
 - Các thành phần (Flask API, dịch vụ embedding, Milvus) giao tiếp thông qua **REST API nội bộ** hoặc **cổng gRPC của Milvus**.
 - Dữ liệu ảnh/văn bản được vector hóa thành **vector JSON** và truyền giữa các container qua **Docker network nội bộ (`milvus-net`)**.
 - Tất cả service nằm trên cùng mạng `milvus-net`, cho phép gọi nhau qua tên container như `milvus`, `embedding`, `etcd`, v.v.
 
-##### 🧱 Kiến trúc giao tiếp giữa các thành phần:
+#####  Kiến trúc giao tiếp giữa các thành phần:
 ```
 plaintext
 
