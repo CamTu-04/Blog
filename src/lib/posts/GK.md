@@ -92,6 +92,35 @@ milvus/
 └── stress_test.sh           # Script kiểm tra hiệu năng hệ thống (stress test)
               
 ```
+
+### ✅ Tiến trình hoạt động hệ thống tìm kiếm sản phẩm tương tự
+
+**Bước 1: Người dùng gửi yêu cầu tìm kiếm ảnh**
+- Người dùng gửi một ảnh lên từ giao diện web hoặc qua API POST request.
+
+**Bước 2: Nginx Load Balancer nhận yêu cầu**
+- Request đầu tiên đi vào Nginx – là load balancer.
+- Nginx thực hiện phân phối tải (load balancing) đến một trong các FastAPI nodes (cụ thể là fastapi1, fastapi2 hoặc fastapi3).
+- Cấu hình trong nginx.conf đã định nghĩa upstream fastapi_backend gồm fastapi1 và fastapi2.
+
+**Bước 3: FastAPI xử lý ảnh**
+- Node FastAPI được chọn sẽ:
+1. Nhận ảnh từ người dùng
+2. Gửi ảnh vào module feature extractor để trích xuất đặc trưng.
+3. Sau đó, ảnh sẽ được vector hóa (dùng model như ResNet để chuyển thành vector 512 chiều).
+4. Vector thu được sẽ được sử dụng để truy vấn tới cơ sở dữ liệu Milvus.
+
+**Bước 4: Gửi truy vấn vector tới Milvus**
+- FastAPI sử dụng thư viện pymilvus để gửi truy vấn vector search đến Milvus Lite DB.
+- Milvus sẽ so sánh vector đầu vào với vector đã lưu trong DB để tìm ra các vector gần nhất (khoảng cách cosine hoặc L2).
+
+**Bước 5: Milvus trả về danh sách ID sản phẩm tương tự**
+- Milvus trả về danh sách các vector gần nhất kèm theo ID hoặc metadata (như file name).
+- FastAPI dựa vào thông tin này để truy xuất hình ảnh tương ứng từ thư mục lưu trữ hoặc dịch vụ lưu ảnh (có thể là MinIO).
+
+**Bước 6: FastAPI trả kết quả về client**
+- FastAPI đóng gói kết quả và trả về danh sách các ảnh sản phẩm tương tự cho người dùng.
+
 ---
 ## III. 🧠 Vector hóa dữ liệu & tích hợp Milvus
 
