@@ -89,6 +89,7 @@ milvus/
 ├── docker-compose.yml       # Triển khai ứng dụng và Milvus bằng Docker Compose
 ├── Requirements.txt         # Danh sách các thư viện Python cần thiết
 ├── images/                  # Thư mục chứa ảnh sản phẩm
+├── nginx.conf               # Load Balancing và Reverse Proxy
 └── stress_test.sh           # Script kiểm tra hiệu năng hệ thống (stress test)
               
 ```
@@ -160,6 +161,12 @@ output = self.model(input_tensor)
 feature_vector = normalize(output.squeeze().numpy().reshape(1, -1), norm="l2")
 ```
 ✅ Tệp này được sử dụng bởi cả app.py và embeddings_to_milvus.py.
+#### 📄 `enginx.conf` - *Load Balancing và Reverse Proxy*
+File nginx.conf dùng để cấu hình Nginx như một load balancer (bộ cân bằng tải) trong hệ thống phân tán.
+Nó đảm bảo:
+- Phân phối yêu cầu từ người dùng đến nhiều node FastAPI (fastapi1, fastapi2, fastapi3)
+- Giúp hệ thống chịu tải tốt hơn, tăng tính sẵn sàng, và tăng khả năng chịu lỗi (Fault Tolerance)
+
 #### 📄 `embeddings_to_milvus.py` – *Nhúng Dữ Liệu Ảnh vào Milvus*
 - Duyệt toàn bộ ảnh trong thư mục images/, images/train/, v.v.
 - Gọi FeatureExtractor để trích xuất vector từ mỗi ảnh.
